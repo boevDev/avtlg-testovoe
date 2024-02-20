@@ -1,0 +1,66 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "images": [
+        "615edbad4c35b.png",
+        "615edbad4c35c.png",
+        "615edbad4c35d.png"
+      ],
+      "name": "Volvo XC70, 2007",
+      "description": "1973 года выпуска, в отличном состоянии. Пробег 200000 км.",
+      "price": 1500000,
+      "contacts": "seller@mail.ru",
+      "technical_characteristics": {
+        "car_id": 45,
+        "brand": "Volvo",
+        "model": "XC70",
+        "productionYear": 2007,
+        "body": "body",
+        "mileage": 200000
+      },
+      "options": [
+        {
+          "option_name": "Климат-контроль"
+        },
+        {
+          "option_name": "Кожаный руль"
+        },
+        {
+          "option_name": "Центральный замок"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "images": [
+        "615edbad4c35b.png",
+        "615edbad4c35c.png",
+        "615edbad4c35d.png"
+      ],
+      "name": "Audi RS7, 2023",
+      "description": "2023 года выпуска, в отличном состоянии. Пробег 15000 км.",
+      "price": 24500000,
+      "contacts": "seller2@mail.ru",
+      "technical_characteristics": {
+        "car_id": 76,
+        "brand": "Audi",
+        "model": "RS7",
+        "productionYear": 2023,
+        "body": "body",
+        "mileage": 15000
+      },
+      "options": [
+        {
+          "option_name": "Климат-контроль"
+        },
+        {
+          "option_name": "Кожаный руль"
+        },
+        {
+          "option_name": "Центральный замок"
+        }
+      ]
+    }
+  ]
+}
