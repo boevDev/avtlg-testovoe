@@ -42,5 +42,5 @@ export default function Page() {
     return <div>loading...</div>;
   }
 
-  return <CarForm mode='update' defaultValues={car} />;
+  return <CarForm mode='update' defaultValues={car} id={params.id} />;
 }

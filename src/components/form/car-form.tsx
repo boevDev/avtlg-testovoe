@@ -3,6 +3,7 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { v4 as uuid } from 'uuid';
+import { useParams } from 'next/navigation';
 
 export type CarInfo = {
   name: string;
@@ -48,10 +49,11 @@ const schema: yup.ObjectSchema<Partial<CarFormFields>> = yup.object({
 type Props = {
   mode: 'create' | 'update';
   defaultValues?: Partial<CarFormFields>;
+  id?: string | string[];
 };
 
 export default function CarForm(props: Props) {
-  const { defaultValues, mode } = props;
+  const { defaultValues, mode, id } = props;
   const {
     register,
     handleSubmit,
@@ -76,17 +78,15 @@ export default function CarForm(props: Props) {
               ...data,
             }),
           })
-        : await fetch('http://localhost:8080/cars/', {
+        : await fetch('http://localhost:8080/cars/' + id, {
             method: 'PUT',
             body: JSON.stringify({
-              id: uuid(),
+              id: id,
               ...data,
             }),
           });
     console.log(res.status);
   };
-
-  console.log({ errors });
 
   return (
     <Container className={`pt-3`}>
