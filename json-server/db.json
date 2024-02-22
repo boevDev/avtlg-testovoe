@@ -65,6 +65,34 @@
           "id": 3
         }
       ]
+    },
+    {
+      "id": "12dbbf11-afae-457c-b3b6-4134d2ef2e80",
+      "name": "432423423",
+      "description": "4234234234",
+      "price": 23423423,
+      "contacts": "4213@mail.ru",
+      "hasTechnicalCharacteristics": true,
+      "technical_characteristics": {
+        "brand": "433124",
+        "model": "41324",
+        "productionYear": 14242,
+        "mileage": 14214
+      }
+    },
+    {
+      "id": "8c9d946d-3d19-4436-816a-5154b3cff974",
+      "name": "абоба",
+      "description": "ппавпавпаав",
+      "price": 18000000000,
+      "contacts": "mail@mail.ru",
+      "hasTechnicalCharacteristics": true,
+      "technical_characteristics": {
+        "brand": "BMW",
+        "model": "x5",
+        "productionYear": 2097,
+        "mileage": 19999
+      }
     }
   ],
   "carsBase": [

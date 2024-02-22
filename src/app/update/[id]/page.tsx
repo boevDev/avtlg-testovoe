@@ -2,13 +2,15 @@
 
 import CarForm, { CarFormFields } from '@/components/form/car-form';
 import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 
 export default function Page() {
-  // Настрой маршрутизацию
   const [car, setCar] = useState<CarFormFields | null>(null);
 
+  const params = useParams();
+
   useEffect(() => {
-    fetch('http://localhost:8080/cars/1')
+    fetch('http://localhost:8080/cars/' + params.id)
       .then((res) => {
         if (res.ok) {
           return res.json();

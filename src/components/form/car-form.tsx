@@ -51,7 +51,7 @@ type Props = {
 };
 
 export default function CarForm(props: Props) {
-  const { defaultValues } = props;
+  const { defaultValues, mode } = props;
   const {
     register,
     handleSubmit,
@@ -67,13 +67,22 @@ export default function CarForm(props: Props) {
 
     // mode create - post
     // mode update - patch/put
-    const res = await fetch('http://localhost:8080/cars', {
-      method: 'POST',
-      body: JSON.stringify({
-        id: uuid(),
-        ...data,
-      }),
-    });
+    const res =
+      mode === 'create'
+        ? await fetch('http://localhost:8080/cars', {
+            method: 'POST',
+            body: JSON.stringify({
+              id: uuid(),
+              ...data,
+            }),
+          })
+        : await fetch('http://localhost:8080/cars/', {
+            method: 'PUT',
+            body: JSON.stringify({
+              id: uuid(),
+              ...data,
+            }),
+          });
     console.log(res.status);
   };
 
@@ -237,11 +246,15 @@ export default function CarForm(props: Props) {
           </>
         )}
 
-        <Button variant='primary' type='submit'>
-          {/* mode create - Создать */}
-          {/* mode update - Обновить */}
-          Создать
-        </Button>
+        {mode === 'create' ? (
+          <Button variant='primary' type='submit'>
+            Создать
+          </Button>
+        ) : mode === 'update' ? (
+          <Button variant='primary' type='submit'>
+            Обновить
+          </Button>
+        ) : null}
       </Form>
     </Container>
   );
