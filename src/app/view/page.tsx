@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Button, Col, Container, Row, Stack } from 'react-bootstrap';
 import Image from 'next/image';
-import contactIcon from './assets/contact*.svg';
+import contactIcon from './assets/contact.svg';
 
 const getCars = async () => {
   const res = await fetch('http://localhost:8080/cars');
@@ -49,14 +49,23 @@ export default async function Page() {
                   <Col className='mt-1 fw-light'>{item.description}</Col>
                 </Row>
                 <Row>
-                  <Col className='mt-2 fw-light'>Контакты: {item.contacts}</Col>
+                  <Col className='mt-2 fw-light'>
+                    <Image
+                      width={16}
+                      height={16}
+                      src={contactIcon}
+                      alt='contacts'
+                      className='me-2'
+                    />
+                    {item.contacts}
+                  </Col>
                 </Row>
                 <Row>
                   <Col className='mt-2 fs-4'>{currency(item.price)}</Col>
                 </Row>
                 <Row className='mt-3 d-flex justify-content-between'>
                   <Col>
-                    <Link href={'/update'}>
+                    <Link href={'/update/' + item.id}>
                       <Button>Изменить</Button>
                     </Link>
                   </Col>

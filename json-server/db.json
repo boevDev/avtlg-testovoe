@@ -1,7 +1,7 @@
 {
   "cars": [
     {
-      "id": 1,
+      "id": "1",
       "images": [
         "615edbad4c35b.png",
         "615edbad4c35c.png",
@@ -16,7 +16,6 @@
         "brand": "Volvo",
         "model": "XC70",
         "productionYear": 2007,
-        "body": "body",
         "mileage": 200000
       },
       "options": [
@@ -35,7 +34,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "images": [
         "615edbad4c35b.png",
         "615edbad4c35c.png",
@@ -50,7 +49,6 @@
         "brand": "Audi",
         "model": "RS7",
         "productionYear": 2023,
-        "body": "body",
         "mileage": 15000
       },
       "options": [
@@ -67,6 +65,13 @@
           "id": 3
         }
       ]
+    }
+  ],
+  "carsBase": [
+    {
+      "car_id": 76,
+      "brand": "Audi",
+      "model": "RS7"
     }
   ]
 }
