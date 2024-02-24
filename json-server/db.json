@@ -7,7 +7,7 @@
         "615edbad4c35c.png",
         "615edbad4c35d.png"
       ],
-      "name": "BMW",
+      "name": "Volvo XC70, 2007",
       "description": "1973 года выпуска, в отличном состоянии. Пробег 200000 км.",
       "price": 1500000,
       "contacts": "seller@mail.ru",
@@ -67,13 +67,20 @@
         }
       ],
       "hasTechnicalCharacteristics": true
-    }
-  ],
-  "carsBase": [
+    },
     {
-      "car_id": 76,
-      "brand": "Audi",
-      "model": "RS7"
+      "id": "62d7c84a-673c-4d0e-84ad-a244fc1023ba",
+      "name": "BMW M5, 2021",
+      "description": "свежайший аппарат",
+      "price": 15000000,
+      "contacts": "123@mail.ru",
+      "hasTechnicalCharacteristics": true,
+      "technical_characteristics": {
+        "brand": "BMW",
+        "model": "M5",
+        "productionYear": 2021,
+        "mileage": 15000
+      }
     }
   ]
 }

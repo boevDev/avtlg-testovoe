@@ -36,10 +36,10 @@ export default function Page() {
       .catch(() => {
         console.log('failed to load');
       });
-  }, []);
+  }, [params.id]);
 
   if (!car) {
-    return <div>loading...</div>;
+    return <div className='w-100 h-100 text-center'>loading...</div>;
   }
 
   return <CarForm mode='update' defaultValues={car} id={params.id} />;

@@ -3,7 +3,8 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { v4 as uuid } from 'uuid';
-import { useParams } from 'next/navigation';
+import { redirect } from 'next/navigation';
+import styles from './car-form.module.scss';
 
 export type CarInfo = {
   name: string;
@@ -36,7 +37,7 @@ const schema: yup.ObjectSchema<Partial<CarFormFields>> = yup.object({
     .typeError('Заполните цену')
     .required('Заполните цену')
     .positive('Больше нуля'),
-  contacts: yup.string().required().email(),
+  contacts: yup.string().required('Заполните почту').email('Введите почту'),
   hasTechnicalCharacteristics: yup.boolean().required(),
   technical_characteristics: yup.object({
     brand: yup.string().required(),
@@ -65,10 +66,6 @@ export default function CarForm(props: Props) {
   });
 
   const onSubmit = async (data: any) => {
-    console.log({ data });
-
-    // mode create - post
-    // mode update - patch/put
     const res =
       mode === 'create'
         ? await fetch('http://localhost:8080/cars', {
@@ -89,7 +86,7 @@ export default function CarForm(props: Props) {
   };
 
   return (
-    <Container className={`pt-3`}>
+    <Container className={`pt-3 ${styles.formContainer}`}>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className='mb-3' controlId='name'>
           <Form.Label>Название</Form.Label>
@@ -247,11 +244,19 @@ export default function CarForm(props: Props) {
         )}
 
         {mode === 'create' ? (
-          <Button variant='primary' type='submit'>
+          <Button
+            variant='primary'
+            type='submit'
+            onClick={() => redirect('/view')}
+          >
             Создать
           </Button>
         ) : mode === 'update' ? (
-          <Button variant='primary' type='submit'>
+          <Button
+            variant='primary'
+            type='submit'
+            onClick={() => redirect('/view')}
+          >
             Обновить
           </Button>
         ) : null}
