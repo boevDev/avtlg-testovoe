@@ -6,7 +6,7 @@ import Image from 'next/image';
 import contactIcon from './assets/contact.svg';
 
 const getCars = async () => {
-  const res = await fetch('http://localhost:8080/cars');
+  const res = await fetch('http://localhost:8080/cars', { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -15,11 +15,12 @@ const getCars = async () => {
   return res.json();
 };
 
-const currency = (number: number) =>
+const currency = (number: number | string) =>
   new Intl.NumberFormat('ru-RU', {
     style: 'currency',
     currency: 'RUB',
-  }).format(number);
+    maximumFractionDigits: 0,
+  }).format(Number(number));
 
 export default async function Page() {
   const cars = (await getCars()) as Car[];
@@ -70,7 +71,7 @@ export default async function Page() {
                     </Link>
                   </Col>
                   <Col>
-                    <Link href={'/delete'}>
+                    <Link href={'/delete/' + item.id}>
                       <Button variant='danger'>Удалить</Button>
                     </Link>
                   </Col>

@@ -3,8 +3,8 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { v4 as uuid } from 'uuid';
-import { redirect } from 'next/navigation';
 import styles from './car-form.module.scss';
+import { redirect, useRouter } from 'next/navigation';
 
 export type CarInfo = {
   name: string;
@@ -65,6 +65,8 @@ export default function CarForm(props: Props) {
     defaultValues,
   });
 
+  const router = useRouter();
+
   const onSubmit = async (data: any) => {
     const res =
       mode === 'create'
@@ -83,6 +85,9 @@ export default function CarForm(props: Props) {
             }),
           });
     console.log(res.status);
+    if (res.status === 200 || 201) {
+      router.push('/view');
+    }
   };
 
   return (
@@ -120,7 +125,8 @@ export default function CarForm(props: Props) {
         <Form.Group className='mb-3' controlId='price'>
           <Form.Label>Цена</Form.Label>
           <Form.Control
-            type='input'
+            type='text'
+            data-type='currency'
             placeholder='Введите цену'
             {...register('price', {
               valueAsNumber: true,
@@ -244,19 +250,11 @@ export default function CarForm(props: Props) {
         )}
 
         {mode === 'create' ? (
-          <Button
-            variant='primary'
-            type='submit'
-            onClick={() => redirect('/view')}
-          >
+          <Button variant='primary' type='submit'>
             Создать
           </Button>
         ) : mode === 'update' ? (
-          <Button
-            variant='primary'
-            type='submit'
-            onClick={() => redirect('/view')}
-          >
+          <Button variant='primary' type='submit'>
             Обновить
           </Button>
         ) : null}

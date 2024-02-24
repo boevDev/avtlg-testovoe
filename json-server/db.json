@@ -67,20 +67,6 @@
         }
       ],
       "hasTechnicalCharacteristics": true
-    },
-    {
-      "id": "62d7c84a-673c-4d0e-84ad-a244fc1023ba",
-      "name": "BMW M5, 2021",
-      "description": "свежайший аппарат",
-      "price": 15000000,
-      "contacts": "123@mail.ru",
-      "hasTechnicalCharacteristics": true,
-      "technical_characteristics": {
-        "brand": "BMW",
-        "model": "M5",
-        "productionYear": 2021,
-        "mileage": 15000
-      }
     }
   ]
 }
