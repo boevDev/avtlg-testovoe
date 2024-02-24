@@ -10,7 +10,7 @@ export default function Page() {
   const params = useParams();
 
   useEffect(() => {
-    fetch('http://localhost:8080/cars/' + params.id)
+    fetch('http://localhost:8080/cars/' + params?.id)
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -36,11 +36,11 @@ export default function Page() {
       .catch(() => {
         console.log('failed to load');
       });
-  }, [params.id]);
+  }, [params?.id]);
 
   if (!car) {
     return <div className='w-100 h-100 text-center'>loading...</div>;
   }
 
-  return <CarForm mode='update' defaultValues={car} id={params.id} />;
+  return <CarForm mode='update' defaultValues={car} id={params?.id} />;
 }

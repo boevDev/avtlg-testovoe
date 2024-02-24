@@ -3,6 +3,7 @@
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import styles from './delete.module.scss';
 import { useParams, useRouter } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 export default function Page() {
   const params = useParams();
@@ -13,7 +14,10 @@ export default function Page() {
       method: 'DELETE',
     });
     console.log(res.status);
-    res.status === 200 && router.push('/view');
+    if (res.status === 200) {
+      router.push('/view');
+      location.reload();
+    }
   };
 
   return (

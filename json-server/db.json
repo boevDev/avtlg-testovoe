@@ -1,72 +1,46 @@
 {
   "cars": [
     {
-      "id": "1",
-      "images": [
-        "615edbad4c35b.png",
-        "615edbad4c35c.png",
-        "615edbad4c35d.png"
-      ],
-      "name": "Volvo XC70, 2007",
-      "description": "1973 года выпуска, в отличном состоянии. Пробег 200000 км.",
-      "price": 1500000,
-      "contacts": "seller@mail.ru",
+      "id": "2d33cdf0-62bc-4450-b4b2-619ebaf47d94",
+      "name": "BMW X5 93 года",
+      "description": "Внимание! Продаётся Х5ый 93его года. Карбюратор, инжектор, инспектор проректор, ИК-порт, блютуз, туз, козырь, валет, дама, румба, сальса, танго, манго, Мис Бахар, сеть магазинов \"Сабина\", сисле, Элвис Пресли, Джек Дэниелс, Уолт Дисней, Френсис Форд Коппола, акапелла, опера, хор, нейша хор, винзавод, Новый Год, Новруз Байрам, День Независимости, Праздник Св. Патрика.\nДальше. Фул-салон, наверху-внизу люк, панорама, балкон, фасад, смотровая площадка, зеркало заднего вида, зеркало дисплея, зеркало фона, зеркало заставки, приставка, 10 к 1 ставка, пол-ставки, подставка, булавка, козявка.\nПошли дальше. Затем - DVD, VCD, впереди, не перди, CD, и не рыпайся, MP3, MP4, М-пакет, М-торба, М-зембиль, changer, excange, I see no changes, California love, Two of America's most wanted, Hit'em Up, мемори-пакет, мемори-кард, мультимедиа-кард, флеш-карт, кард-ридер, сидер, гнойный пидер, Лидер, АНС, Аз-ТВ, Аз Саманд, Аз-Петрол, аста ла виста, Vista, XP, Windows.\nЗатем сидение, вставание, лежание, функция Забеременеть, меню функции, настройки, браузер, Мои приложения, Игры, Контакты, SIM. Кондиционер Сплит, вентилятор, печка, автонагрев, греф, доля, посылка, доставка, отчёт переданных, входящие, исходящие, Мои папки, Шаблоны, СМС-сообщения, электронная почта.\nТормоза: АБС, АТС, БАГЭС, собес, ММS, MSN, ICQ, АДИГО, чат, форум.\nРуль: гидравлика, биоравлика, Кравченко, Шевченко, чеченка, косынка, болонка, овчарка, air-bag, air-ballon, air-банка, air-бутылка, Turan Air.\nСцепление, тормоз, газ, оксиген, Azeronline, «Азеррейл», Azercell, Аз-нефть, азеракшам, Азербайджан.\nКоробка передач: Стептроник, Типтроник, Электроник, автомат, пулемёт, самонаводящаяся ракета, пуля со смещённым центром тяжести.\nЦвет металлика, механика, аэробика, фитнесс, бодибилдинг, Empire State Building, пудинг, приёмник, стеклоподъёмник, разговорник, лётчик, переводчик, русско-английский переводчик, курсы повышения квалификации, компьютерные курсы, курс доллара, курс Северная широта, 3,4 курс, бакалавр, магистр, оркестр, министр, Мистер Твистер.\nМотор 3.0, в пользу Франции, хозяева поля стали чемпионами.\nМощность: 300 лошадиных сил, 250 ослиных сил, 4 пьяные макаки, 2 щучьих потроха и одно не твоё собачье дело.\n6 цилиндров, 4 кубика, 7 ромбиков, 16 кварталов, Clap Ur Hands, Shake That Ass, Tell me what you wanna all I dance.\nРасход топлива: 100 км - 30 л бензин, 20 л спирт, Cola, Fanta, Sprite, чай, лёля, балыкъ, хамча баы.\nРазмер бензобака: 80 л, чистый етмиш алты, докъсан учь, докъсан беш, докъсан еди, Уиндоус докъсан секиз.\nПередние-задние колёса: AMG, Extasy, виагра, подагра, Сиалис, Виллес, герпес, Элвис, Гринпис.\nКруговая плёнка, клиёнка, скатерть, простыня, наволочка, занавеска, невестка, деверь, зять, тёща, двоюродный дядя.\nСиденье: массаж, пассаж, форсаж, месаж, гагаш по имени Дадаш, номер ахаш, параша.\nКарбюратор, калькулятор, куратор, прокурор, государственный обвинитель, судебный исполнитель, адвокат, судья, сторона защиты, блок, оборона, противостояние, нападение, совпадение, академия, премия, Грэмми, Золотой глобус, Оскар, тостер, блендер, Enter, Caps Lock, Shift, Del, Alt, обновить, скопировать, перезагрузить, отжать, высушить, спустить.\n\nКого интересует этот автомобиль, позвоните пожалуйста по номерам... или по буквам. Кому как удобно.\nСпасибо большое!\nХ5ый 93его года эксклюзивная модель\nПрощайте!",
+      "price": 1000000,
+      "contacts": "bmw-x5-93@mail.ru",
+      "hasTechnicalCharacteristics": true,
       "technical_characteristics": {
-        "car_id": 45,
-        "brand": "Volvo",
-        "model": "XC70",
-        "productionYear": 2007,
-        "mileage": 200000
-      },
-      "options": [
-        {
-          "option_name": "Климат-контроль",
-          "id": 1
-        },
-        {
-          "option_name": "Кожаный руль",
-          "id": 2
-        },
-        {
-          "option_name": "Центральный замок",
-          "id": 3
-        }
-      ],
-      "hasTechnicalCharacteristics": true
+        "brand": "BMW",
+        "model": "X5",
+        "productionYear": 1993,
+        "mileage": 600000
+      }
     },
     {
-      "id": "2",
-      "images": [
-        "615edbad4c35b.png",
-        "615edbad4c35c.png",
-        "615edbad4c35d.png"
-      ],
+      "id": "5d89508a-72b3-4cbb-afdd-37f149f6f8e6",
       "name": "Audi RS7, 2023",
-      "description": "2023 года выпуска, в отличном состоянии. Пробег 15000 км.",
-      "price": 24500000,
-      "contacts": "seller2@mail.ru",
+      "description": "Audi RS7 2023 года, всего 5000 пробега.",
+      "price": 25000000,
+      "contacts": "buy-audi@mail.ru",
+      "hasTechnicalCharacteristics": true,
       "technical_characteristics": {
-        "car_id": 76,
         "brand": "Audi",
         "model": "RS7",
         "productionYear": 2023,
-        "mileage": 15000
-      },
-      "options": [
-        {
-          "option_name": "Климат-контроль",
-          "id": 1
-        },
-        {
-          "option_name": "Кожаный руль",
-          "id": 2
-        },
-        {
-          "option_name": "Центральный замок",
-          "id": 3
-        }
-      ],
-      "hasTechnicalCharacteristics": true
+        "mileage": 5000
+      }
+    },
+    {
+      "id": "ba1d8425-7ccc-40b1-80bc-2464d8fe5a81",
+      "name": "новая Лада Гранта 2020 года",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra, mi sed bibendum maximus, nulla velit dignissim lorem, sed dictum odio ipsum quis erat. Donec nec purus at augue lacinia dignissim. Etiam non magna tincidunt nisl vulputate auctor. Sed imperdiet commodo luctus. Etiam ac risus est. Sed mattis a purus mollis mollis. Curabitur vitae interdum leo. Phasellus eros nunc, laoreet a ultricies sed, elementum sit amet eros. Phasellus eu mattis purus. Integer rhoncus felis nec arcu faucibus maximus. Cras sit amet massa pellentesque, ultrices velit quis, auctor nulla. Aenean mattis in lectus ac varius. Maecenas vulputate gravida efficitur. Donec porttitor mauris et magna sollicitudin, non lacinia diam pellentesque. Mauris tincidunt varius justo id euismod. Integer tincidunt nulla nunc, a suscipit leo gravida in. Nulla tempus ornare dolor. Duis malesuada velit vel porttitor aliquet. Etiam eleifend bibendum lacus, ut scelerisque arcu. Curabitur ut diam commodo, blandit nisi ultricies, laoreet arcu. Vestibulum. ",
+      "price": 1500000,
+      "contacts": "granta@xmail.ru",
+      "hasTechnicalCharacteristics": true,
+      "technical_characteristics": {
+        "brand": "Lada",
+        "model": "Granta",
+        "productionYear": 2020,
+        "mileage": 300000
+      }
     }
   ]
 }

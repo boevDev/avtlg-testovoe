@@ -1,0 +1,17 @@
+.techCharCol {
+  border-right: 1px solid rgba(0, 0, 0, .3);
+
+  .techCharTitle {
+    justify-content: center;
+    font-weight: 700;
+
+    .techCharChild {
+      justify-content: center;
+      font-weight: 400;
+    }
+  }
+}
+
+.btn {
+  width: 100%;
+}

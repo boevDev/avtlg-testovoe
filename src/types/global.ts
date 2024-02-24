@@ -19,6 +19,7 @@ type Car = {
   description: string;
   price: number;
   contacts: string;
+  hasTechnicalCharacteristics: boolean;
   technical_characteristics?: TechnicalCharacteristics;
   options?: Option;
 };

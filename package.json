@@ -17,6 +17,8 @@
     "react-bootstrap": "^2.10.1",
     "react-dom": "^18",
     "react-hook-form": "^7.50.1",
+    "react-number-format": "^5.3.1",
+    "react-textarea-autosize": "^8.5.3",
     "redux": "^5.0.1",
     "sass": "^1.71.0",
     "scss": "^0.2.4",

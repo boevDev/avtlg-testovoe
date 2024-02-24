@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { Button, Col, Container, Row, Stack } from 'react-bootstrap';
 import Image from 'next/image';
 import contactIcon from './assets/contact.svg';
+import styles from './style.module.scss';
+import ListOfCars from '@/components/list-of-cars/list-of-cars';
 
 const getCars = async () => {
   const res = await fetch('http://localhost:8080/cars', { cache: 'no-store' });
@@ -15,11 +17,16 @@ const getCars = async () => {
   return res.json();
 };
 
-const currency = (number: number | string) =>
+const currencyFormat = (number: number | string) =>
   new Intl.NumberFormat('ru-RU', {
     style: 'currency',
     currency: 'RUB',
     maximumFractionDigits: 0,
+  }).format(Number(number));
+
+const mileageFormat = (number: number | string | undefined) =>
+  new Intl.NumberFormat('ru-RU', {
+    style: 'decimal',
   }).format(Number(number));
 
 export default async function Page() {
@@ -33,53 +40,7 @@ export default async function Page() {
             <Button>Создать новое объявление</Button>
           </Link>
         </Row>
-        <Stack gap={3}>
-          {cars.map((item) => (
-            <Row
-              className='position-relative border-bottom m-0 pb-3'
-              key={item.id}
-            >
-              <Col>
-                <img src='https://placekitten.com/200/200' alt='kitty' />
-              </Col>
-              <Col>
-                <Row>
-                  <Col className='fw-bolder fs-3'>{item.name}</Col>
-                </Row>
-                <Row>
-                  <Col className='mt-1 fw-light'>{item.description}</Col>
-                </Row>
-                <Row>
-                  <Col className='mt-2 fw-light'>
-                    <Image
-                      width={16}
-                      height={16}
-                      src={contactIcon}
-                      alt='contacts'
-                      className='me-2'
-                    />
-                    {item.contacts}
-                  </Col>
-                </Row>
-                <Row>
-                  <Col className='mt-2 fs-4'>{currency(item.price)}</Col>
-                </Row>
-                <Row className='mt-3 d-flex justify-content-between'>
-                  <Col>
-                    <Link href={'/update/' + item.id}>
-                      <Button>Изменить</Button>
-                    </Link>
-                  </Col>
-                  <Col>
-                    <Link href={'/delete/' + item.id}>
-                      <Button variant='danger'>Удалить</Button>
-                    </Link>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          ))}
-        </Stack>
+        <ListOfCars name={''} />
       </Container>
     </main>
   );

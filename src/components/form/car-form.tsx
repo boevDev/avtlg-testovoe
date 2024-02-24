@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { v4 as uuid } from 'uuid';
 import styles from './car-form.module.scss';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { NumericFormat } from 'react-number-format';
 
 export type CarInfo = {
   name: string;
@@ -34,16 +35,24 @@ const schema: yup.ObjectSchema<Partial<CarFormFields>> = yup.object({
     .min(3, 'Длинна должна быть больше 3 символов'),
   price: yup
     .number()
-    .typeError('Заполните цену')
+    .typeError('Введите число')
     .required('Заполните цену')
     .positive('Больше нуля'),
   contacts: yup.string().required('Заполните почту').email('Введите почту'),
-  hasTechnicalCharacteristics: yup.boolean().required(),
+  hasTechnicalCharacteristics: yup.boolean().required(''),
   technical_characteristics: yup.object({
-    brand: yup.string().required(),
-    model: yup.string().required(),
-    productionYear: yup.number().required().positive(),
-    mileage: yup.number().required().positive(),
+    brand: yup.string().required('Заполните марку авто'),
+    model: yup.string().required('Заполните модель авто'),
+    productionYear: yup
+      .number()
+      .typeError('Введите число')
+      .required('Заполните год выпуска')
+      .positive('Больше нуля'),
+    mileage: yup
+      .number()
+      .typeError('Введите число')
+      .required('Заполните пробег авто')
+      .positive('Больше нуля'),
   }),
 });
 
@@ -87,11 +96,17 @@ export default function CarForm(props: Props) {
     console.log(res.status);
     if (res.status === 200 || 201) {
       router.push('/view');
+      location.reload();
     }
   };
 
   return (
     <Container className={`pt-3 ${styles.formContainer}`}>
+      {mode === 'create' ? (
+        <h1 className={styles.title}>Создайте объявление</h1>
+      ) : mode === 'update' ? (
+        <h1 className={styles.title}>Внесите изменения</h1>
+      ) : null}
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className='mb-3' controlId='name'>
           <Form.Label>Название</Form.Label>
@@ -250,12 +265,12 @@ export default function CarForm(props: Props) {
         )}
 
         {mode === 'create' ? (
-          <Button variant='primary' type='submit'>
+          <Button variant='primary' type='submit' className={styles.btn}>
             Создать
           </Button>
         ) : mode === 'update' ? (
-          <Button variant='primary' type='submit'>
-            Обновить
+          <Button variant='primary' type='submit' className={styles.btn}>
+            Изменить
           </Button>
         ) : null}
       </Form>
