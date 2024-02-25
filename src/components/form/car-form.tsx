@@ -1,10 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Container, Form } from 'react-bootstrap';
-import { useForm } from 'react-hook-form';
+import { Button, Container, Form, InputGroup } from 'react-bootstrap';
+import { useFieldArray, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { v4 as uuid } from 'uuid';
 import styles from './car-form.module.scss';
 import { useRouter } from 'next/navigation';
+import deleteIcon from './assets/delete-icon.svg';
+import Image from 'next/image';
 
 export type CarInfo = {
   name: string;
@@ -17,6 +19,10 @@ export type CarInfo = {
     productionYear?: number | null;
     mileage?: number | null;
   } | null;
+  options?: {
+    name: string;
+    id: string;
+  }[];
 };
 
 export type CarFormFields = CarInfo & {
@@ -70,6 +76,12 @@ const schema: yup.ObjectSchema<Partial<CarFormFields>> = yup.object({
             .nullable(),
         }),
     }),
+  options: yup.array().of(
+    yup.object({
+      name: yup.string().required('Введите опцию'),
+      id: yup.string().required(),
+    })
+  ),
 });
 
 type Props = {
@@ -85,12 +97,18 @@ export default function CarForm(props: Props) {
     handleSubmit,
     formState: { errors },
     watch,
+    control,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
   });
 
   const router = useRouter();
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'options',
+  });
 
   const onSubmit = async (data: any) => {
     const res =
@@ -278,6 +296,40 @@ export default function CarForm(props: Props) {
                 </Form.Text>
               )}
             </Form.Group>
+
+            {fields.map((fieldItem, index) => (
+              <InputGroup key={fieldItem.id} className='mb-3'>
+                <Form.Control
+                  placeholder='Введите опцию'
+                  aria-label='Введите опцию'
+                  aria-describedby='basic-addon2'
+                  {...register(`options.${index}.name`)}
+                />
+                <Button
+                  variant='outline-danger'
+                  id='button-addon2'
+                  type='button'
+                  onClick={() => {
+                    remove(index);
+                  }}
+                >
+                  -Удалить
+                </Button>
+              </InputGroup>
+            ))}
+
+            <Button
+              type='button'
+              variant='outline-dark'
+              onClick={() => {
+                append({
+                  id: uuid(),
+                  name: '',
+                });
+              }}
+            >
+              +Добавить опцию
+            </Button>
           </>
         )}
 

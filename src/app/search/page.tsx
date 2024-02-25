@@ -7,10 +7,12 @@ export default async function Page({
   searchParams,
 }: {
   searchParams?: {
-    query?: string;
+    name?: string;
+    brand?: string;
   };
 }) {
-  const query = searchParams?.query || '';
+  const name = searchParams?.name || '';
+  const brand = searchParams?.brand || '';
 
   return (
     <main>
@@ -22,8 +24,8 @@ export default async function Page({
           <SearchBar placeholder='Поиск' />
         </div>
         <div className='pt-3'>
-          <Suspense key={query} fallback={<div>loading...</div>}>
-            <ListOfCars name={query} />
+          <Suspense key={name} fallback={<div>loading...</div>}>
+            <ListOfCars name={name} brand={brand} />
           </Suspense>
         </div>
       </Container>

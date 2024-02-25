@@ -1,6 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button, Col, Row, Stack } from 'react-bootstrap';
+import {
+  Button,
+  Col,
+  ListGroup,
+  ListGroupItem,
+  Row,
+  Stack,
+} from 'react-bootstrap';
 import contactIcon from './assets/contact.svg';
 import styles from './style.module.scss';
 
@@ -13,9 +20,6 @@ const fetchCars = async (queryParams?: { name?: string }): Promise<Car[]> => {
           })
         : ''),
     { cache: 'no-store' }
-
-    // 'http://localhost:8080/cars',
-    // { cache: 'no-store' }
   );
 
   if (!res.ok) {
@@ -40,6 +44,7 @@ const mileageFormat = (number: number | string | undefined) =>
 
 type Props = {
   name?: string;
+  brand?: string;
 };
 
 export default async function ListOfCars(props: Props) {
@@ -47,6 +52,8 @@ export default async function ListOfCars(props: Props) {
   const cars = await fetchCars({
     name,
   });
+
+  console.log(cars);
 
   return (
     <Stack gap={3}>
@@ -80,7 +87,8 @@ export default async function ListOfCars(props: Props) {
                 {item.contacts}
               </Col>
             </Row>
-            {item.hasTechnicalCharacteristics === true ? (
+
+            {!!item.hasTechnicalCharacteristics && (
               <Row className='mt-4'>
                 <Col className={styles.techCharCol}>
                   <Row className={styles.techCharTitle}>
@@ -116,7 +124,17 @@ export default async function ListOfCars(props: Props) {
                   </Row>
                 </Col>
               </Row>
-            ) : null}
+            )}
+
+            <ListGroup className='mt-4'>
+              {!!item.options &&
+                item.options.map((item) => (
+                  <ListGroupItem key={item.id} variant='success'>
+                    {item.name}
+                  </ListGroupItem>
+                ))}
+            </ListGroup>
+
             <Row>
               <Col className='mt-4 fs-1'>{currencyFormat(item.price)}</Col>
             </Row>

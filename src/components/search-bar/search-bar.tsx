@@ -1,7 +1,8 @@
 'use client';
 
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { Col, Form, InputGroup, Row } from 'react-bootstrap';
+import { useDebouncedCallback } from 'use-debounce';
 
 type Props = {
   placeholder: string;
@@ -13,32 +14,71 @@ const SearchBar: React.FC<Props> = (props) => {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  function handleSearch(term: string) {
+  type Args = {
+    name?: string;
+    brand?: string;
+    model?: string;
+  };
+
+  const handleSearch = useDebouncedCallback((args: Args) => {
     const params = new URLSearchParams(searchParams);
-    if (term) {
-      params.set('query', term);
+    if (args.name) {
+      params.set('name', args.name);
     } else {
-      params.delete('query');
+      params.delete('name');
     }
+    if (args.brand) {
+      params.set('brand', args.brand);
+    } else {
+      params.delete('brand');
+    }
+    if (args.model) {
+      params.set('model', args.model);
+    } else {
+      params.delete('model');
+    }
+
     replace(`${pathname}?${params.toString()}`);
-  }
+  }, 500);
 
   return (
-    <div>
-      <InputGroup className='mb-3'>
-        <Form.Control
-          placeholder={placeholder}
-          aria-describedby='basic-addon2'
-          onChange={(e) => {
-            handleSearch(e.target.value);
-          }}
-          defaultValue={searchParams.get('query')?.toString()}
-        />
-        <Button variant='outline-primary' id='button-addon2'>
-          Найти
-        </Button>
-      </InputGroup>
-    </div>
+    <Row>
+      <Col>
+        <InputGroup className='mb-3'>
+          <Form.Control
+            placeholder={placeholder}
+            onChange={(e) => {
+              handleSearch({ name: e.target.value });
+            }}
+            defaultValue={searchParams.get('name')?.toString()}
+          />
+        </InputGroup>
+      </Col>
+
+      <Col>
+        <InputGroup className='mb-3'>
+          <Form.Control
+            placeholder='Марка'
+            onChange={(e) => {
+              handleSearch({ brand: e.target.value });
+            }}
+            defaultValue={searchParams.get('brand')?.toString()}
+          />
+        </InputGroup>
+      </Col>
+
+      <Col>
+        <InputGroup className='mb-3'>
+          <Form.Control
+            placeholder='Модель'
+            onChange={(e) => {
+              handleSearch({ model: e.target.value });
+            }}
+            defaultValue={searchParams.get('model')?.toString()}
+          />
+        </InputGroup>
+      </Col>
+    </Row>
   );
 };
 

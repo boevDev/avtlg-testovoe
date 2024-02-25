@@ -8,7 +8,7 @@ type TechnicalCharacteristics = {
 };
 
 type Option = {
-  option_name: string;
+  name: string;
   id: number;
 };
 
@@ -21,5 +21,5 @@ type Car = {
   contacts: string;
   hasTechnicalCharacteristics: boolean;
   technical_characteristics?: TechnicalCharacteristics;
-  options?: Option;
+  options?: Option[];
 };
