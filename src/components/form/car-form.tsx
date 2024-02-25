@@ -39,25 +39,6 @@ const schema: yup.ObjectSchema<Partial<CarFormFields>> = yup.object({
     .positive('Больше нуля'),
   contacts: yup.string().required('Заполните почту').email('Введите почту'),
   hasTechnicalCharacteristics: yup.boolean(),
-  // technical_characteristics: yup
-  //   .object({
-  //     brand: yup.string().required('Заполните марку авто'),
-  //     model: yup.string().required('Заполните модель авто'),
-  //     productionYear: yup
-  //       .number()
-  //       .typeError('Введите число')
-  //       .required('Заполните год выпуска')
-  //       .positive('Больше нуля'),
-  //     mileage: yup
-  //       .number()
-  //       .typeError('Введите число')
-  //       .required('Заполните пробег авто')
-  //       .positive('Больше нуля'),
-  //   })
-  //   .when('hasTechnicalCharacteristics', {
-  //     is: false,
-  //     then: (schema) => schema.nullable().notRequired(),
-  //   }),
   technical_characteristics: yup
     .object({
       brand: yup.string().required('Заполните марку авто'),
