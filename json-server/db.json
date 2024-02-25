@@ -34,7 +34,7 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra, mi sed bibendum maximus, nulla velit dignissim lorem, sed dictum odio ipsum quis erat. Donec nec purus at augue lacinia dignissim. Etiam non magna tincidunt nisl vulputate auctor. Sed imperdiet commodo luctus. Etiam ac risus est. Sed mattis a purus mollis mollis. Curabitur vitae interdum leo. Phasellus eros nunc, laoreet a ultricies sed, elementum sit amet eros. Phasellus eu mattis purus. Integer rhoncus felis nec arcu faucibus maximus. Cras sit amet massa pellentesque, ultrices velit quis, auctor nulla. Aenean mattis in lectus ac varius. Maecenas vulputate gravida efficitur. Donec porttitor mauris et magna sollicitudin, non lacinia diam pellentesque. Mauris tincidunt varius justo id euismod. Integer tincidunt nulla nunc, a suscipit leo gravida in. Nulla tempus ornare dolor. Duis malesuada velit vel porttitor aliquet. Etiam eleifend bibendum lacus, ut scelerisque arcu. Curabitur ut diam commodo, blandit nisi ultricies, laoreet arcu. Vestibulum. ",
       "price": 1500000,
       "contacts": "granta@xmail.ru",
-      "hasTechnicalCharacteristics": true,
+      "hasTechnicalCharacteristics": false,
       "technical_characteristics": {
         "brand": "Lada",
         "model": "Granta",

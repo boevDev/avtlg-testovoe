@@ -5,7 +5,6 @@ import * as yup from 'yup';
 import { v4 as uuid } from 'uuid';
 import styles from './car-form.module.scss';
 import { useRouter } from 'next/navigation';
-import { NumericFormat } from 'react-number-format';
 
 export type CarInfo = {
   name: string;
@@ -13,15 +12,15 @@ export type CarInfo = {
   price: number;
   contacts: string;
   technical_characteristics?: {
-    brand: string;
-    model: string;
-    productionYear: number;
-    mileage: number;
-  };
+    brand?: string | null;
+    model?: string | null;
+    productionYear?: number | null;
+    mileage?: number | null;
+  } | null;
 };
 
 export type CarFormFields = CarInfo & {
-  hasTechnicalCharacteristics: boolean;
+  hasTechnicalCharacteristics?: boolean | null;
 };
 
 const schema: yup.ObjectSchema<Partial<CarFormFields>> = yup.object({
@@ -39,21 +38,57 @@ const schema: yup.ObjectSchema<Partial<CarFormFields>> = yup.object({
     .required('Заполните цену')
     .positive('Больше нуля'),
   contacts: yup.string().required('Заполните почту').email('Введите почту'),
-  hasTechnicalCharacteristics: yup.boolean().required(''),
-  technical_characteristics: yup.object({
-    brand: yup.string().required('Заполните марку авто'),
-    model: yup.string().required('Заполните модель авто'),
-    productionYear: yup
-      .number()
-      .typeError('Введите число')
-      .required('Заполните год выпуска')
-      .positive('Больше нуля'),
-    mileage: yup
-      .number()
-      .typeError('Введите число')
-      .required('Заполните пробег авто')
-      .positive('Больше нуля'),
-  }),
+  hasTechnicalCharacteristics: yup.boolean(),
+  // technical_characteristics: yup
+  //   .object({
+  //     brand: yup.string().required('Заполните марку авто'),
+  //     model: yup.string().required('Заполните модель авто'),
+  //     productionYear: yup
+  //       .number()
+  //       .typeError('Введите число')
+  //       .required('Заполните год выпуска')
+  //       .positive('Больше нуля'),
+  //     mileage: yup
+  //       .number()
+  //       .typeError('Введите число')
+  //       .required('Заполните пробег авто')
+  //       .positive('Больше нуля'),
+  //   })
+  //   .when('hasTechnicalCharacteristics', {
+  //     is: false,
+  //     then: (schema) => schema.nullable().notRequired(),
+  //   }),
+  technical_characteristics: yup
+    .object({
+      brand: yup.string().required('Заполните марку авто'),
+      model: yup.string().required('Заполните модель авто'),
+      productionYear: yup
+        .number()
+        .typeError('Введите число')
+        .required('Заполните год выпуска')
+        .positive('Больше нуля'),
+      mileage: yup
+        .number()
+        .typeError('Введите число')
+        .required('Заполните пробег авто')
+        .positive('Больше нуля'),
+    })
+    .when('hasTechnicalCharacteristics', {
+      is: false,
+      then: (schema) =>
+        schema.shape({
+          brand: yup.string(),
+          model: yup.string(),
+          productionYear: yup
+            .number()
+            .transform((value) => (isNaN(value) ? undefined : value))
+            .nullable(),
+          mileage: yup
+            .number()
+            .transform((value) => (isNaN(value) ? undefined : value))
+            .nullable(),
+        }),
+    }),
 });
 
 type Props = {
@@ -171,6 +206,7 @@ export default function CarForm(props: Props) {
         <Form.Group className='mb-3' controlId='hasTechnicalCharacteristics'>
           <Form.Check
             type='checkbox'
+            type-data='boolean'
             label='Добавить тех. характеристики'
             {...register('hasTechnicalCharacteristics')}
           />
