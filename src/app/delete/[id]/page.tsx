@@ -8,16 +8,14 @@ export default function Page() {
   const params = useParams();
   const router = useRouter();
 
-  const onDelete = async (data: any) => {
+  const onDelete = async () => {
     const res = await fetch('http://localhost:8080/cars/' + params.id, {
       method: 'DELETE',
     });
     console.log(res.status);
     if (res.status === 200) {
       router.push('/view');
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
+      router.refresh();
     }
   };
 

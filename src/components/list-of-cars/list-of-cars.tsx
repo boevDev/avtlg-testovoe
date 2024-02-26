@@ -11,21 +11,17 @@ import {
 import contactIcon from './assets/contact.svg';
 import styles from './style.module.scss';
 
-const fetchCars = async (queryParams?: {
-  name?: string;
-  brand?: string;
-  model?: string;
-  productionYear?: string;
-}): Promise<Car[]> => {
-  const res = await fetch(
-    'http://localhost:8080/cars?' +
-      (!!queryParams
-        ? new URLSearchParams({
-            ...queryParams,
-          })
-        : ''),
-    { cache: 'no-store' }
-  );
+const fetchCars = async (queryParams?: CarQueryParams): Promise<Car[]> => {
+  const url = new URL('http://localhost:8080/cars');
+  for (let _key in queryParams) {
+    let key = _key as keyof CarQueryParams;
+    if (queryParams[key]) {
+      url.searchParams.set(key, queryParams[key] as string);
+    }
+  }
+
+  console.log('fetch', url);
+  const res = await fetch(url, { cache: 'no-store' });
 
   if (!res.ok) {
     console.log(res);
@@ -52,21 +48,16 @@ type Props = {
   brand?: string;
   model?: string;
   productionYear?: string;
+  price_gte?: string;
+  price_lte?: string;
 };
 
 export default async function ListOfCars(props: Props) {
-  const { name, brand, model, productionYear } = props;
-  const cars = await fetchCars({
-    name,
-    brand,
-    model,
-    productionYear,
-  });
-
-  console.log(cars);
+  const cars = await fetchCars(props);
 
   return (
     <Stack gap={3}>
+      {!cars && <div>fail</div>}
       {cars.map((item) => (
         <Row className='position-relative border-bottom m-0 pb-3' key={item.id}>
           <Col>

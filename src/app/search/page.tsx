@@ -2,42 +2,35 @@ import ListOfCars from '@/components/list-of-cars/list-of-cars';
 import SearchBar from '@/components/search-bar/search-bar';
 import Link from 'next/link';
 import { Suspense } from 'react';
-import { Container } from 'react-bootstrap';
+import { Button, Container, Row } from 'react-bootstrap';
 
 export default async function Page({
   searchParams,
 }: {
-  searchParams?: {
-    name?: string;
-    brand?: string;
-    model?: string;
-    productionYear?: string;
-  };
+  searchParams?: CarQueryParams;
 }) {
-  const name = searchParams?.name || '';
-  const brand = searchParams?.brand || '';
-  const model = searchParams?.model || '';
-  const productionYear = searchParams?.productionYear || '';
-
   return (
     <main>
       <Container className='pt-3'>
-        <div>
+        <Row>
           <h1 className='text-center fw-bolder mb-3'>Поиск по фильтрам</h1>
-        </div>
-        <div>
+        </Row>
+        <Row>
+          <Link className='mt-2 mb-2' href={'/view'}>
+            <Button>Закрыть фильтры</Button>
+          </Link>
+        </Row>
+        <Row>
           <SearchBar placeholder='Имя' />
-        </div>
-        <div className='pt-3'>
-          <Suspense key={name} fallback={<div>loading...</div>}>
-            <ListOfCars
-              name={name}
-              brand={brand}
-              model={model}
-              productionYear={productionYear}
-            />
+        </Row>
+        <Row className='pt-3'>
+          <Suspense
+            key={searchParams ? Object.values(searchParams).join('') : ''}
+            fallback={<div>loading...</div>}
+          >
+            <ListOfCars {...searchParams} />
           </Suspense>
-        </div>
+        </Row>
       </Container>
     </main>
   );

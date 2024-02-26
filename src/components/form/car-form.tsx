@@ -128,11 +128,9 @@ export default function CarForm(props: Props) {
             }),
           });
     console.log(res.status);
-    if (res.status === 200 || 201) {
+    if (res.status < 300) {
       router.push('/view');
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
+      router.refresh();
     }
   };
 

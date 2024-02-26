@@ -12,8 +12,11 @@ export default async function Page() {
           <Link href={'/create'}>
             <Button>Создать новое объявление</Button>
           </Link>
+          <Link className='mt-2 mb-2' href={'/search'}>
+            <Button>Открыть фильтры</Button>
+          </Link>
         </Row>
-        <ListOfCars name='' brand='' model='' productionYear='' />
+        <ListOfCars />
       </Container>
     </main>
   );

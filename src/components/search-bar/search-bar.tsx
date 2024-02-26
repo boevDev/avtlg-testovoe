@@ -14,38 +14,19 @@ const SearchBar: React.FC<Props> = (props) => {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  type Args = {
-    name?: string;
-    brand?: string;
-    model?: string;
-    productionYear?: string;
-  };
-
-  const handleSearch = useDebouncedCallback((args: Args) => {
+  const handleSearch = useDebouncedCallback((args: CarQueryParams) => {
     const params = new URLSearchParams(searchParams);
-    if (args.name) {
-      params.set('name', args.name);
-    } else {
-      params.delete('name');
-    }
-    if (args.brand) {
-      params.set('brand', args.brand);
-    } else {
-      params.delete('brand');
-    }
-    if (args.model) {
-      params.set('model', args.model);
-    } else {
-      params.delete('model');
-    }
-    if (args.productionYear) {
-      params.set('productionYear', args.productionYear);
-    } else {
-      params.delete('productionYear');
+
+    for (let key in args) {
+      if (args[key as keyof CarQueryParams]) {
+        params.set(key, String(args[key as keyof CarQueryParams]));
+      } else {
+        params.delete(key);
+      }
     }
 
     replace(`${pathname}?${params.toString()}`);
-  }, 500);
+  }, 300);
 
   return (
     <div>
@@ -67,9 +48,13 @@ const SearchBar: React.FC<Props> = (props) => {
             <Form.Control
               placeholder='Марка'
               onChange={(e) => {
-                handleSearch({ brand: e.target.value });
+                handleSearch({
+                  'technical_characteristics.brand': e.target.value,
+                });
               }}
-              defaultValue={searchParams.get('brand')?.toString()}
+              defaultValue={searchParams
+                .get('technical_characteristics.brand')
+                ?.toString()}
             />
           </InputGroup>
         </Col>
@@ -79,9 +64,13 @@ const SearchBar: React.FC<Props> = (props) => {
             <Form.Control
               placeholder='Модель'
               onChange={(e) => {
-                handleSearch({ model: e.target.value });
+                handleSearch({
+                  'technical_characteristics.model': e.target.value,
+                });
               }}
-              defaultValue={searchParams.get('model')?.toString()}
+              defaultValue={searchParams
+                .get('technical_characteristics.model')
+                ?.toString()}
             />
           </InputGroup>
         </Col>
@@ -93,9 +82,13 @@ const SearchBar: React.FC<Props> = (props) => {
             <Form.Control
               placeholder='Год выпуска'
               onChange={(e) => {
-                handleSearch({ productionYear: e.target.value });
+                handleSearch({
+                  'technical_characteristics.productionYear': e.target.value,
+                });
               }}
-              defaultValue={searchParams.get('productionYear')?.toString()}
+              defaultValue={searchParams
+                .get('technical_characteristics.productionYear')
+                ?.toString()}
             />
           </InputGroup>
         </Col>
@@ -103,16 +96,52 @@ const SearchBar: React.FC<Props> = (props) => {
         <Col>
           <InputGroup className='mb-3'>
             <InputGroup.Text>Пробег</InputGroup.Text>
-            <Form.Control placeholder='От' aria-label='От' />
-            <Form.Control placeholder='До' aria-label='До' />
+            <Form.Control
+              placeholder='От'
+              aria-label='От'
+              onChange={(e) => {
+                handleSearch({
+                  'technical_characteristics.mileage_gte': e.target.value,
+                });
+              }}
+              defaultValue={searchParams
+                .get('technical_characteristics.mileage_gte')
+                ?.toString()}
+            />
+            <Form.Control
+              placeholder='До'
+              aria-label='До'
+              onChange={(e) => {
+                handleSearch({
+                  'technical_characteristics.mileage_lte': e.target.value,
+                });
+              }}
+              defaultValue={searchParams
+                .get('technical_characteristics.mileage_lte')
+                ?.toString()}
+            />
           </InputGroup>
         </Col>
 
         <Col>
           <InputGroup className='mb-3'>
             <InputGroup.Text>Цена</InputGroup.Text>
-            <Form.Control placeholder='От' aria-label='От' />
-            <Form.Control placeholder='До' aria-label='До' />
+            <Form.Control
+              placeholder='От'
+              aria-label='От'
+              onChange={(e) => {
+                handleSearch({ price_gte: e.target.value });
+              }}
+              defaultValue={searchParams.get('price_gte')?.toString()}
+            />
+            <Form.Control
+              placeholder='До'
+              aria-label='До'
+              onChange={(e) => {
+                handleSearch({ price_lte: e.target.value });
+              }}
+              defaultValue={searchParams.get('price_lte')?.toString()}
+            />
           </InputGroup>
         </Col>
       </Row>

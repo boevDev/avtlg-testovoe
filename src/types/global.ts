@@ -23,3 +23,14 @@ type Car = {
   technical_characteristics?: TechnicalCharacteristics;
   options?: Option[];
 };
+
+type CarQueryParams = {
+  name?: string;
+  price_gte?: string;
+  price_lte?: string;
+  'technical_characteristics.model'?: string;
+  'technical_characteristics.brand'?: string;
+  'technical_characteristics.productionYear'?: string;
+  'technical_characteristics.mileage_gte'?: string;
+  'technical_characteristics.mileage_lte'?: string;
+};
