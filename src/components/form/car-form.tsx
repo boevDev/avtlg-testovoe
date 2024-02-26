@@ -130,7 +130,9 @@ export default function CarForm(props: Props) {
     console.log(res.status);
     if (res.status === 200 || 201) {
       router.push('/view');
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
   };
 

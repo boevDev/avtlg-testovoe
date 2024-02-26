@@ -11,7 +11,12 @@ import {
 import contactIcon from './assets/contact.svg';
 import styles from './style.module.scss';
 
-const fetchCars = async (queryParams?: { name?: string }): Promise<Car[]> => {
+const fetchCars = async (queryParams?: {
+  name?: string;
+  brand?: string;
+  model?: string;
+  productionYear?: string;
+}): Promise<Car[]> => {
   const res = await fetch(
     'http://localhost:8080/cars?' +
       (!!queryParams
@@ -45,12 +50,17 @@ const mileageFormat = (number: number | string | undefined) =>
 type Props = {
   name?: string;
   brand?: string;
+  model?: string;
+  productionYear?: string;
 };
 
 export default async function ListOfCars(props: Props) {
-  const { name } = props;
+  const { name, brand, model, productionYear } = props;
   const cars = await fetchCars({
     name,
+    brand,
+    model,
+    productionYear,
   });
 
   console.log(cars);
@@ -73,7 +83,9 @@ export default async function ListOfCars(props: Props) {
               <Col className='fw-bolder fs-3'>{item.name}</Col>
             </Row>
             <Row>
-              <Col className='mt-1 fw-light'>{item.description}</Col>
+              <Col className={`mt-1 fw-light ${styles.description}`}>
+                {item.description}
+              </Col>
             </Row>
             <Row>
               <Col className='mt-4 d-flex align-items-center fw-bolder fs-6 text-secondary'>
